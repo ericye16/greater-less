@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <title>Greater or less?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+    
+    #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 300px;
+      }
+      
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+      .container {
+        width: auto;
+        max-width: 680px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+    </style>
 </head>
 <body>
-    <h1>How did you do?</h1>
-    <p>
-    Enter a grade, your wealth, or the number of kitties you have and compare it
-    anonymously with a friend.
-    </p>
-    <form method="POST" action="/">
-        <input type="text" name="number">
-        <input type="submit" value="Compare!">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <div class="wrap">
+    
+    <div class="container">
+        <div class="page-header">
+        <h1>How did you do?</h1>
+        </div>
+    
+        <p class="lead">
+        Enter a grade, your wealth, or the number of kitties you have and compare it
+        securely with a friend.
+        </p>
+
+    <form method="POST" action="/" class="navbar-form pull-left">
+        <input type="text" name="number" class="span2" placeholder="Your number">
+        <input type="submit" value="Compare!" class="btn">
     </form>
+    </div>
+    <div id="push"></div>
+    
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+        <p class="muted credit">© Eric Ye 2013. Licensed under the GPL. Wanna contribute/raise an issue/fork? Source code available at <a href="https://github.com/ericye16/greater-less">Github</a>.
+        </p>
+        </div>
+    </div>
+    
 </body>
 </html>
