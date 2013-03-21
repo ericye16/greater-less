@@ -2,7 +2,7 @@
 <html>
 <head>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <title>Greater or less?</title>
+    <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
       html,
@@ -46,24 +46,8 @@
 <body>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <div class="wrap">
-    
-    <div class="container">
-        <div class="page-header">
-        <h1>How did you do?</h1>
-        </div>
-    
-        <p class="lead">
-        Enter a grade, your wealth, or the number of kitties you have and compare it
-        securely with a friend.
-        </p>
-
-    <form method="POST" action="/" class="navbar-form pull-left">
-        <input type="text" name="number" class="span2" placeholder="Your number">
-        <input type="submit" value="Compare!" class="btn">
-    </form>
-    </div>
-    <div id="push"></div>
-    
+        {% block content %}{% endblock %}
+        <div id="push"></div>    
     </div>
 
 
