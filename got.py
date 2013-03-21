@@ -19,14 +19,18 @@ class Result(db.Model):
     firstKey = db.IntegerProperty()
     secondKey = db.IntegerProperty()
 
+def resultOut(rh, result):
+    resultTemplate = jinja_environment.get_template('gt.html.part')
+    rh.response.out.write(resultTemplate.render({'result': result}))
+
 def greater(rh):
-    rh.response.out.write('>')
+    resultOut(rh, '&gt;')
 
 def equal(rh):
-    rh.response.out.write('=')
+    resultOut(rh, '=')
 
 def less(rh):
-    rh.response.out.write('<')
+    resultOut(rh, '&lt;')
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
