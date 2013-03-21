@@ -94,8 +94,8 @@ class SecondPage(webapp2.RequestHandler):
         except:
             self.response.out.write("Link not found. Check your link?")
             return
-        result = Result.all().filter('secondKey =', key).get()
-        if not result:
+        comp = FirstCompare.all().filter('secondKey =', key).get()
+        if not comp:
             self.response.out.write("Link not found. Check your link?")
             return
         secondTemplate = jinja_environment.get_template('second.html.part')
@@ -111,7 +111,7 @@ class SecondPage(webapp2.RequestHandler):
             return
         result = Result.all().filter('secondKey =', key).get()
         comp = FirstCompare.all().filter('secondKey =', key).get()
-        if not result:
+        if not comp:
             self.response.out.write("Link not found. Check your link?")
             return
         number = self.request.get('number')
