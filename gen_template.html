@@ -22,7 +22,7 @@
       /* Set the fixed height of the footer here */
       #push,
       #footer {
-        height: 300px;
+        height: 250px;
       }
       
       /* Lastly, apply responsive CSS fixes as necessary */
@@ -46,8 +46,11 @@
 <body>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <div class="wrap">
+    <div class="container">
+        <h3 class="muted"><a href="/">greater-or-less</a></h3>
         {% block content %}{% endblock %}
-        <div id="push"></div>    
+    </div>
+    <div id="push"></div>    
     </div>
 
 

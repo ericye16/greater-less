@@ -1,7 +1,6 @@
 {% extends "gen_template.html" %}
 {% block title %}Greater or Less?{% endblock %}
 {% block content %}
-    <div class="container">
         <div class="page-header">
         <h1>How did you do?</h1>
         </div>
@@ -15,5 +14,5 @@
         <input type="text" name="number" class="span2" placeholder="Your number">
         <input type="submit" value="Compare!" class="btn">
     </form>
-    </div>
+
 {% endblock %}
