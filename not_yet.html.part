@@ -1,0 +1,14 @@
+{% extends "gen_template.html" %}
+{% block title %}Greater or Less?{% endblock %}
+{% block content %}
+
+        <div class="page-header">
+        <h1>Not yet!</h1>
+        </div>
+        
+        <p class="lead">Your friend hasn't given us anything yet.</p>
+        
+        <p>Refresh this page once they're done. 
+        Here's their link: <a href="{{link}}">https://greater-or-less.appspot.com{{link}}</a></p>
+
+{% endblock %}

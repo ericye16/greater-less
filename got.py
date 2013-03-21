@@ -85,7 +85,10 @@ class FirstPage(webapp2.RequestHandler):
         elif result.result == -1:
             less(self)
         elif result.result == None:
-            self.response.out.write("Your friend has not entered their number yet.")
+            notYetTemplate = jinja_environment.get_template('not_yet.html.part')
+            secondKey = FirstCompare.get_by_key_name(key).secondKey
+            url = "/second?key=" + str(secondKey)
+            self.response.out.write(notYetTemplate.render({'link': url}))
         else:
             print "SOMETHING HORRIBLE WENT WRONG FIRSTPAGE"
                 

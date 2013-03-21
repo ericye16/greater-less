@@ -1,9 +1,9 @@
 {% extends "gen_template.html" %}
 {% block title %}Greater or Less?{% endblock %}
 {% block content %}
-        <div class="page-header">
-        <h1>How <em>did</em> you do?</h1>
+
+        <div class="text-center">
+        <h1>You {{result}} Friend</h1>
         </div>
-        <h3>You{{result}}Friend</h3>
 
 {% endblock %}
