@@ -1,0 +1,19 @@
+{% extends "gen_template.html" %}
+{% block title %}Greater or Less?{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+        <h1>Your Links</h1>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+        <li>
+        Your link: <a href="{{yourlink}}">https://greater-or-less.appspot.com{{yourlink}}</a>
+        </li>
+        
+        <li>
+        Your friend's link: <a href="{{theirlink}}">https://greater-or-less.appspot.com{{theirlink}}</a>
+        </li>
+        </ul>
+
+    </div>
+{% endblock %}
