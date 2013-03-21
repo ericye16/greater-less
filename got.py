@@ -19,6 +19,15 @@ class Result(db.Model):
     firstKey = db.IntegerProperty()
     secondKey = db.IntegerProperty()
 
+def greater(rh):
+    rh.response.out.write('>')
+
+def equal(rh):
+    rh.response.out.write('=')
+
+def less(rh):
+    rh.response.out.write('<')
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         indexTemplate = jinja_environment.get_template('index.html.part')
@@ -46,6 +55,10 @@ class MainPage(webapp2.RequestHandler):
                 secondKey = secondKey,
                 firstNum = number)
         newFirstCompare.put()
+        newResult = Result(key_name = str(firstKey),
+                           firstKey = firstKey,
+                           secondKey = secondKey)
+        newResult.put()
 
         #Rendering the html
         your_link = "/first?key=" + str(firstKey)
@@ -61,15 +74,86 @@ class FirstPage(webapp2.RequestHandler):
         result = Result.get_by_key_name(key)
         if not result:
             self.response.out.write("Link not found. Check your link?")
-        
+        if result.result == 1: #higher
+            greater(self)
+        elif result.result == 0:
+            equal(self)
+        elif result.result == -1:
+            less(self)
+        elif result.result == None:
+            self.response.out.write("Your friend has not entered their number yet.")
+        else:
+            print "SOMETHING HORRIBLE WENT WRONG FIRSTPAGE"
+                
 
 class SecondPage(webapp2.RequestHandler):
     def get(self):
-        pass
+        key = self.request.get('key')
+        try:
+            key = int(key)
+        except:
+            self.response.out.write("Link not found. Check your link?")
+            return
+        result = Result.all().filter('secondKey =', key).get()
+        if not result:
+            self.response.out.write("Link not found. Check your link?")
+            return
+        secondTemplate = jinja_environment.get_template('second.html.part')
+        self.response.out.write(secondTemplate.render({
+            'currenturl': key}))
+
+    def post(self):
+        key = self.request.get('key')
+        try:
+            key = int(key)
+        except:
+            self.response.out.write("Link not found. Check your link?")
+            return
+        result = Result.all().filter('secondKey =', key).get()
+        comp = FirstCompare.all().filter('secondKey =', key).get()
+        if not result:
+            self.response.out.write("Link not found. Check your link?")
+            return
+        number = self.request.get('number')
+        try:
+            number = float(number)
+        except:
+            self.response.out.write("You didn't give a number.")
+            return
+        if comp.firstNum > number:
+            result.result = 1
+        elif comp.firstNum < number:
+            result.result = -1
+        elif comp.firstNum == number:
+            result.result = 0
+        result.put()
+        comp.delete()
+        self.redirect('/third?key=' + str(key))
+    
+
+class ThirdPage(webapp2.RequestHandler):
+    def get(self):
+        key = self.request.get('key')
+        try:
+            key = int(key)
+        except:
+            self.response.out.write("Link not found.")
+            return
+        result = Result.all().filter('secondKey =', key).get()
+        if not result:
+            self.response.out.write("Link not found.")
+            return
+        if result.result == -1:
+            greater(self)
+        elif result.result == 0:
+            equal(self)
+        elif result.result == 1:
+            less(self)
         
 app = webapp2.WSGIApplication([('/', MainPage),
                                ('/first', FirstPage),
-                               ('/second', SecondPage)
+                               ('/second', SecondPage),
+                               ('/third', ThirdPage)
                                ],
                                debug = True,
                                )
