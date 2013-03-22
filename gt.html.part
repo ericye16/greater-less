@@ -3,7 +3,7 @@
 {% block content %}
 
         <div class="text-center">
-        <h1>You {{result}} Friend</h1>
+        <h1>Your number {{result}} Friend's number</h1>
         </div>
 
 {% endblock %}

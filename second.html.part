@@ -7,7 +7,10 @@
         </div>
     
         <p class="lead">
-        Enter your grade (or whatever else) below.
+        Enter your grade (or whatever else) below and we'll compare that for you.
+        </p>
+        <p>
+        Don't worry, they'll never know what you entered.
         </p>
 
     <form method="POST" action="/second?key={{currenturl}}" class="navbar-form pull-left">
